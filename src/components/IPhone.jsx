@@ -30,6 +30,7 @@ const Model = (props) => {
       material[1].needsUpdate = true;
     });
   }, [materials, props.item]);
+  // here in the above useEffect, we have written: [materials, props.item], this means that the useEffect will only work if and only if we will make some changes in these two item, that is materials & props.item
 
   return (
     <group {...props} dispose={null}>

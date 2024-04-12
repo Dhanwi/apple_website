@@ -2,12 +2,12 @@ import { useGSAP } from "@gsap/react";
 import ModelView from "./ModelView";
 import gsap from "gsap";
 import { yellowImg } from "../utils";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
 import { models, sizes } from "../constants";
-
+import { animateWithGsapTimeline } from "../utils/animations";
 
 const Model = () => {
   const [size, setSize] = useState("small");
@@ -31,6 +31,26 @@ const Model = () => {
   // ROTATION
   const [smallRotation, setSmallRotation] = useState(0);
   const [largeRotation, setLargeRotation] = useState(0);
+
+  const tl = gsap.timeline();
+  useEffect(() => {
+    if (size === "large") {
+      animateWithGsapTimeline(tl, small, smallRotation, "#view1", "#view2", {
+        transform: "translateX(-100%)",
+        duration: 2,
+      });
+      // small, smallRotation, is used in size=== large bcz, we will toggle form small to large only that's why passing the small prop and just opposite for size == small
+
+      // also, here '#view1', '#view2' means for large screen we will go from view 1 to view 2, and opposite for small screen IPhone
+    }
+
+    if (size === "small") {
+      animateWithGsapTimeline(tl, large, largeRotation, "#view2", "#view1", {
+        transform: "translateX(0)",
+        duration: 2,
+      });
+    }
+  });
 
   useGSAP(() => {
     gsap.to("#heading", {
