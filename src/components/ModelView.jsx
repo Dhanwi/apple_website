@@ -9,13 +9,14 @@ import * as THREE from "three";
 import Lights from "./Lights";
 import { Suspense } from "react";
 import IPhone from "./IPhone";
+import Loader from "./Loader";
 
 const ModelView = ({
   index,
   groupRef,
   gsapType,
   controlRef,
-  setRotationSize,
+  setRotationState,
   size,
   item,
 }) => {
@@ -23,7 +24,12 @@ const ModelView = ({
     <View
       index={index}
       id={gsapType}
-      className={`w-full h-full ${index === 2} ? 'right-[-100%] : ''`}
+      // earlier the className code was this :className={`w-full h-full ${index === 2} ? 'right-[-100%] : ''`}
+
+      // due to which the models were showing, up and down, after adding absolute position, it shows on one on the another, after that making correction in the dynamic position code, that is ${..... this line, }, we get it correct
+      // so correct code is: className={`w-full h-full absolute ${index === 2 ? 'right-[-100%]' : ''}`}
+
+      className={`w-full h-full absolute ${index === 2 ? "right-[-100%]" : ""}`}
     >
       {/* Ambient Light */}
       <ambientLight intensity={0.3} />
@@ -49,18 +55,11 @@ const ModelView = ({
         name={`${index === 1} ? 'small' : 'large`}
         position={[0, 0, 0]}
       >
-        <Suspense
-          fallback={
-            <Html>
-              <div>Loading</div>
-            </Html>
-          }
-        >
-          <IPhone 
-            scale={index === 1 ? [15,15,15] : [17,17,17]}
-
-            item = {item}
-            size = {size}
+        <Suspense fallback={<Loader />}>
+          <IPhone
+            scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
+            item={item}
+            size={size}
           />
         </Suspense>
       </group>
