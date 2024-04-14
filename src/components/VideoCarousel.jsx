@@ -160,6 +160,10 @@ const VideoCarousel = () => {
                 <video
                   id="video"
                   playsInline={true}
+                  // preload="auto", earlier it was set auto and because of that when we refresh the page that video start playing even before we can go to that particular viewport,or viewpage. that's why now, i set it to none and then added autoPlay also.
+                  // preload="none"
+                  // autoPlay
+                  // back to the same, because getting error in loading
                   preload="auto"
                   muted
                   className={`${list.id === 2 && "translate-x-44"}
