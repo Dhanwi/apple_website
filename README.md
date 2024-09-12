@@ -1,4 +1,7 @@
 <h1>Recreating the Apple iPhone 15 Pro Website</h1>
+![Image](https://github.com/user-attachments/assets/013f92ad-7f78-4b9e-bc7c-9947a4cf5966)
+
+
 This project is a full recreation of the official Apple iPhone 15 Pro website, designed to showcase a perfect blend of smooth animations and 3D effects using cutting-edge web technologies. The goal is to replicate the fluid, interactive experience that users encounter on Apple's site, with a special focus on combining GSAP animations and Three.js 3D models.
 
 <h2>Project Features:</h2>
